@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
                 errore("send()", -6);
             printf("[CLIENT]\t'%s'\n", msg);
             free(msg);
-            
+
         } else error = true;
     }
     if (!error) {
@@ -84,58 +84,6 @@ int main(int argc, char* argv[]) {
     } else {
         printf("Something went wrong!\n\n");
     }
-   
-
-    // attesa risposta
-    /*if (!strcmp(buffer, READY)) {
-
-        char* msg = (char*) malloc(sizeof(char) * MAX_SEND);
-
-        // invio USER, username
-        printf("insert USER: ");
-        char* user = inputStr();
-        sprintf(msg, "%s %s", SEND_USER, user);
-        free(user);
-
-        if ( send(sock_id, msg, strlen(msg), 0) != strlen(msg))
-            errore("send()", -4);
-        printf("[CLIENT]\t'%s'\n", msg);
-
-
-        // attesa risposta a USER
-        rc = recv(sock_id, buffer, MAX_PACK + 1, 0);
-        if (rc < 0)
-            errore("recv()", -5); 
-        buffer[rc] = '\0';
-        printf("[FTP-SERVER]\t'%s'\n\n", buffer);
-
-        if (!strcmp(buffer, USER_OK_NEED_PASS)) {
-
-            // invio PASS, password
-            printf("insert PASSWORD: ");
-            char* password = inputStr();
-            sprintf(msg, "%s %s", SEND_PASS, password);
-            free(password);
-            if ( send(sock_id, msg, strlen(msg), 0) != strlen(msg) )
-                errore("send()", -6);
-            printf("[CLIENT]\t'%s'\n\n", msg);
-            free(msg);
-
-
-            // attesa risposta a PASS
-            rc = recv(sock_id, buffer, MAX_PACK + 1, 0);
-            if (rc < 0)
-                errore("recv()", -7);
-            buffer[rc] = '\0';
-            printf("[FTP-SERVER]\t'%s'\n", buffer);
-
-            if (!strcmp(buffer, GREETING)) {
-                printf("Logged in!\n\n");
-            } else {
-                printf("Something went wrong!\n\n");
-            }
-        }
-    }*/
 
     close(sock_id);
     return 0;
